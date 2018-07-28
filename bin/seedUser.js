@@ -15,7 +15,6 @@ const users = [
         firstName:  "Emma",
         lastName:   "Nuel",
         googleId:   "String",
-        thumbnail:  "String",
         email:      "emma@hotmail.com",
         birth:      new Date("01/01/1985"),
         gender:     "Hombre",

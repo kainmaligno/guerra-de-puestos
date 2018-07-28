@@ -8,7 +8,6 @@ const userSchema = new Schema({
     firstName:  String,
     lastName:   String,
     googleId:   String,
-    thumbnail:  String,
     email:      { type: String, validate: {
                                     validator:  validator.isEmail,
                                     message:    '{VALUE} no es un email válido',
