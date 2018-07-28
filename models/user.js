@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const mongoose = require("mongoose");
 const {Schema}  = mongoose;
 require('mongoose-type-url');
@@ -7,6 +6,8 @@ const userSchema = new Schema({
     username:   { type: String, required: true },
     firstName:  String,
     lastName:   String,
+    googleId:   String,
+    thumbnail:  String,
     email:      { type: String, validate: [isMail, 'Email inválido'] },
     birth:      { type: Date, required: true },
     gender: {
@@ -30,17 +31,3 @@ function isMail (mail) {
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-=======
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const userSchema = new Schema({
-    username: String,
-    googleId: String,
-    thumbnail: String
-});
-
-const User = mongoose.model('user', userSchema);
-
-module.exports = User;
->>>>>>> c8da5dbb7e6c71a7db126b0cd4c7b8e92696a53f
