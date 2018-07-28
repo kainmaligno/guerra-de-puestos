@@ -8,11 +8,17 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const passport     = require('passport');
+const cookieSession= require('cookie-session');
+const authRoutes   = require('./routes/auth-routes');
+const profileRoutes= require('./routes/profile-routes');
+const passportSetup= require('./config/passport-setup');
+const keys         = require('./config/keys');
+const app = express();
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/guerra-de-puestos', {useMongoClient: true})
+  .connect(keys.mongodb.dbURI, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -22,7 +28,7 @@ mongoose
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-const app = express();
+
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -38,13 +44,29 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
       
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+//set up session cookies
+app.use(cookieSession({
+  maxAge: 24*60*60*1000,
+  keys:[keys.session.cookieKey]
+}));
 
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//set up routes prefix
+app.use('auth/', authRoutes);
+app.use('/profile',profileRoutes);
+
+//create home route
+app.use('/',(req, res) => {
+  res.render('home', {user: req.user});
+})
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
