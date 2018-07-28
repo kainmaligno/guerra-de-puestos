@@ -15,10 +15,11 @@ const profileRoutes= require('./routes/profile-routes');
 const passportSetup= require('./config/passport-setup');
 const keys         = require('./config/keys');
 const app = express();
+const dbName = require('./package.json').name;
 
 mongoose.Promise = Promise;
 mongoose
-  .connect(keys.mongodb.dbURI, {useMongoClient: true})
+  .connect(`mongodb://localhost/${dbName}`, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {

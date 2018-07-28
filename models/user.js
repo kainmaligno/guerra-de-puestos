@@ -10,7 +10,7 @@ const userSchema = new Schema({
     birth:      { type: Date, required: true },
     gender: {
         type: String,
-        enum : ['Male', 'Female', 'N/A'],
+        enum : ['Hombre', 'Mujer', 'N/A'],
         default : 'N/A'
     },
     photo_url:  { type: mongoose.SchemaTypes.Url },
