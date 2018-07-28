@@ -61,7 +61,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //set up routes prefix
-app.use('auth/', authRoutes);
+app.use('/auth', authRoutes);
 app.use('/profile',profileRoutes);
 
 //create home route
@@ -74,8 +74,8 @@ app.locals.title = 'Express - Guerra de Puestos!';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+// const index = require('./routes/index');
+// app.use('/', index);
 
 
 module.exports = app;
