@@ -6,7 +6,7 @@ const password      = "admin";
 const salt          = bcrypt.genSaltSync(bcryptSalt);
 const hashPass      = bcrypt.hashSync(password, salt);
 
-const dbName = require('./package.json').name;
+const dbName = require('../package.json').name;
 mongoose.connect(`mongodb://localhost/${dbName}`);
 
 const users = [
@@ -14,6 +14,8 @@ const users = [
         username:   "Maligno",
         firstName:  "Emma",
         lastName:   "Nuel",
+        googleId:   "String",
+        thumbnail:  "String",
         email:      "emma@hotmail.com",
         birth:      new Date("01/01/1985"),
         gender:     "Hombre",
@@ -24,6 +26,8 @@ const users = [
         username:   "Huguin",
         firstName:  "Hugo",
         lastName:   "Iván",
+        googleId:   "String",
+        thumbnail:  "String",
         email:      "hugo@hotmail.com",
         birth:      new Date("01/01/1988"),
         gender:     "Hombre",
