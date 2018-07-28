@@ -29,4 +29,11 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'),(req,res) => {
   res.redirect('/profile');
 });
+
+//passport authenticate local strategy
+
+router.post('/signup', passport.authenticate('localStrategy'),(req, res) => {
+  
+})
+
 module.exports = router;

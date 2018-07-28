@@ -19,7 +19,7 @@ const dbName = require('./package.json').name;
 
 mongoose.Promise = Promise;
 mongoose
-  .connect(`mongodb://localhost/${dbName}`, {useMongoClient: true})
+  .connect(keys.mongodb.dbURI, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -44,7 +44,7 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
