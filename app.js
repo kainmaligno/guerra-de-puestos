@@ -69,7 +69,7 @@ app.use('/',(req, res) => {
 })
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Express - Guerra de Puestos!';
 
 
 
