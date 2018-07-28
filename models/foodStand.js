@@ -2,14 +2,14 @@ const mongoose  = require("mongoose");
 const {Schema}  = mongoose;
 
 const foodStandSchema = new Schema({
-    name: String,
-    description: String,
-    category: [{
+    name:           { type: String, required: true },
+    description:    { type: String, required: true },
+    category:       [{
         type: String,
-        enum : ['Tacos', 'Tortas', 'Hamburguesas', 'Pizzas','Quesadillas','Pambazos'],
+        enum : ['Tacos', 'Tortas', 'Hamburguesas', 'Hotdogs', 'Pizzas','Quesadillas','Pambazos'],
         default : 'N/A'
     }],
-    location: { type: { type: String }, coordinates: [Number] }
+    location:       { type: { type: String }, coordinates: [Number], required: true }
     }, {
     timestamps: {
         createdAt: "created_at",
