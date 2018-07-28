@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose  = require("mongoose");
 const {Schema}  = mongoose;
+const validator = require("validator");
 require('mongoose-type-url');
 
 const userSchema = new Schema({
@@ -8,11 +9,16 @@ const userSchema = new Schema({
     lastName:   String,
     googleId:   String,
     thumbnail:  String,
-    email:      { type: String, validate: [isMail, 'Email inválido'] },
+    email:      { type: String, validate: {
+                                    validator:  validator.isEmail,
+                                    message:    '{VALUE} no es un email válido',
+                                    isAsync:    false
+                                } 
+            },
     birth:      { type: Date, required: true },
     gender: {
         type: String,
-        enum : ['Male', 'Female', 'N/A'],
+        enum : ['Hombre', 'Mujer', 'N/A'],
         default : 'N/A'
     },
     photo_url:  { type: mongoose.SchemaTypes.Url },
@@ -23,10 +29,6 @@ const userSchema = new Schema({
         updatedAt: "updated_at"
     }
 });
-
-function isMail (mail) {
-    return (!mail.includes("@"));
-};
 
 const User = mongoose.model("User", userSchema);
 

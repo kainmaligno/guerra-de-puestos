@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const {Schema}  = mongoose;
 
 const reviewSchema = new Schema({
-    user_id:        { type: Schema.Types.ObjectId, ref: 'User_id', required: true }, 
-    foodStand_id:   { type: Schema.Types.ObjectId, ref: 'FoodStand_id', required: true },
+    user_id:        { type: Schema.Types.ObjectId, ref: 'User', required: true }, 
+    foodStand_id:   { type: Schema.Types.ObjectId, ref: 'FoodStand', required: true },
     review:         { type: String, required: true }
 });
 
