@@ -56,7 +56,7 @@ passport.use(
 
         if(!user){
           return done(null, false, {message: 'Icorrect Username.'});
-        } 
+        }
 
         if(!user.validPassword(password)){
           return done(null, false, {message: 'Incorrect Password.'});
@@ -67,4 +67,4 @@ passport.use(
     }//end function callback
   //end of LocalStrategy
 //end of passport use
-))
+));
