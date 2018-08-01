@@ -8,7 +8,9 @@ const User = require('../models/user');
 // router.get('/', (req, res, next) => {
 //   res.render('index');
 // });
-
+router.get('/',(req,res) => {
+  res.render('home');
+})
 //auth login
 router.get('/login', (req, res) => {
   res.render('login', {
